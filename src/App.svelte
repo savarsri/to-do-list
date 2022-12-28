@@ -7,6 +7,7 @@
 
 	let login = true;
 	let view;
+	
 
 	onAuthStateChanged(auth, (user) => {
   		if (user) {

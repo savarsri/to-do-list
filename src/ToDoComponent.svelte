@@ -1,6 +1,7 @@
 <script>
-    import {auth} from "./firebase"
+    import {auth,db} from "./firebase"
     import { signOut } from "firebase/auth"; 
+    import { doc, setDoc } from "firebase/firestore"; 
 
 
     let tasks = [];
@@ -8,17 +9,18 @@
     let i;
 
     function addTask(){
-        // if(document.getElementById("listInput").value!=""){
-        //     tasks.push(document.getElementById("listInput").value);
-        //     document.getElementById("listInput").value = "";
-        //     tasks=tasks;
-        // }
-        signOut(auth).then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  // An error happened.
-});
+        if(document.getElementById("listInput").value!=""){
+            tasks.push(document.getElementById("listInput").value);
+            document.getElementById("listInput").value = "";
+            tasks=tasks;
+        }
     }
+
+    const logOut = () => {
+        signOut(auth).then(() => {}).catch((error) => {});
+    }
+
+    
 
     function doneTask(){
         completedTasks.push(tasks[i]);
@@ -37,7 +39,7 @@
     <div>
         <input id="listInput" type="text" placeholder="Enter task">
         <div>
-            <button on:click={addTask}>Enter</button>
+            <button on:click={logOut}>Log Out</button>
             <div class='list'>
                 {#each tasks as t,i}
                 <div>

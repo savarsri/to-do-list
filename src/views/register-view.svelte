@@ -10,19 +10,19 @@
         dispatch('viewChange',true);   
     };
     
-    let email;
-    let password;
+    let email,password,name;
 
     const register = () => {
+        name=document.getElementById('name').value;
         email=document.getElementById("email").value;
         password=document.getElementById("password").value;
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
     // Signed in 
                 const user = userCredential.user;
-                console.log(user);
-         
-    // ...
+                user.displayName = name;
+                newUser(user);
+
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -30,6 +30,16 @@
             console.log(errorMessage);
     // ..
         });
+    }
+
+    const newUser = async (user) => {
+                await setDoc(doc(db, "users", user.uid,"details",'details'), {
+                    name: name,
+                    email: user.email,
+                });
+                await setDoc(doc(db, "users", user.uid,"projects",'Welcome'), {
+                    tasks: ['Welcome to To Do List', 'Hello sir'],
+                });
     }
     
 
