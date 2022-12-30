@@ -6,7 +6,7 @@
     const user = auth.currentUser;
     let projectList = [];
     let taskData = [];
-    let inde=-1;
+    let index;
 
     const getData = async () => {
         const docRef = doc(db,"users", user.uid,"details",'details');
