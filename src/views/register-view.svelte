@@ -1,7 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import {auth,db} from "../firebase"
-    import {createUserWithEmailAndPassword} from "firebase/auth";
+    import {createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
     import { doc, setDoc } from "firebase/firestore";
 
     const dispatch = createEventDispatcher();
@@ -18,17 +18,21 @@
         password=document.getElementById("password").value;
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-    // Signed in 
                 const user = userCredential.user;
-                user.displayName = name;
                 newUser(user);
+
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                }).then(() => {
+                    console.log(user);
+                }).catch((error) => {
+                });
 
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage);
-    // ..
         });
     }
 
@@ -36,9 +40,17 @@
                 await setDoc(doc(db, "users", user.uid,"details",'details'), {
                     name: name,
                     email: user.email,
+                    projectList: ['Welcome'],
                 });
                 await setDoc(doc(db, "users", user.uid,"projects",'Welcome'), {
-                    tasks: ['Welcome to To Do List', 'Hello sir'],
+                    tasks: [{
+                        title:'Welcome to To Do List',
+                        status: false, 
+                    },
+                    {
+                        title: 'Hello Sir',
+                        status: false,
+                    },],
                 });
     }
     

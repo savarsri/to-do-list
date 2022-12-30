@@ -1,9 +1,9 @@
 <script>
 	import LoginView from "./views/login-view.svelte";
 	import RegisterView from "./views/register-view.svelte";
+	import TodoView from "./views/todo-view.svelte";
 	import { onAuthStateChanged } from "firebase/auth";
 	import { auth } from "./firebase";
-    import ToDoComponent from "./ToDoComponent.svelte";
 
 	let login = true;
 	let view;
@@ -11,7 +11,7 @@
 
 	onAuthStateChanged(auth, (user) => {
   		if (user) {
-			view = ToDoComponent;
+			view = TodoView;
   		} else {
 			view=LoginView;
   		}
