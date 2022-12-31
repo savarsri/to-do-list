@@ -4,6 +4,7 @@
 	import TodoView from "./views/todo-view.svelte";
 	import { onAuthStateChanged } from "firebase/auth";
 	import { auth } from "./firebase";
+	import { fade } from 'svelte/transition';
 
 	let login = true;
 	let view;
@@ -28,8 +29,10 @@
 
 </script>
 
-<main class="fullScreen">
-	<svelte:component this={view} on:viewChange={switchView}/>
+<main class="fullScreen" >
+	<div in:fade out:fade>
+		<svelte:component this={view} on:viewChange={switchView} />
+	</div>
 </main>
 
 <style>

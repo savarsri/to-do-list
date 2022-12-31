@@ -89,4 +89,11 @@
         height: 60%;
     }
 
+    .style2{
+        display: flex;
+    }
+    .linkText{
+        margin: 0px 6px;
+    }
+
 </style>
