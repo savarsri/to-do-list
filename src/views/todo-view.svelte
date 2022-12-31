@@ -129,8 +129,9 @@
             <button class="primaryButton" on:click={logOut}>Sign Out</button>
         </div>
     </div>
+    <div class="vl"></div>
     <div id="rightPanel">
-        <div>
+        <div id="taskListDiv">
             {#each taskData as taskData, i}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class:done={taskData.status} in:fade out:fade>
@@ -154,8 +155,14 @@
         display: flex;
     }
 
+    .vl {
+        border-left: 3px solid rgb(71, 209, 255);
+        height: 100%;
+    }
+
     .done{
-        opacity: 0.4;
+        opacity: 0.5;
+        text-decoration: line-through;
     }
 
     #leftPanel{
@@ -223,6 +230,10 @@
         flex-direction: column;
         justify-content: space-between;
         background-color: white;
+    }
+
+    #taskListDiv{
+        overflow-y: auto;
     }
 
     #taskInputDiv{
