@@ -220,8 +220,6 @@
         background-color: rgb(250, 250, 250);
     }
 
-    #createButton{
-    }
 
     #rightPanel{
         height: 100%;
