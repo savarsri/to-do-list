@@ -26,8 +26,11 @@ A truly cross-platform task management app. Whether you're at home using the des
 ## Built With
 
 This web app is built using:
+<br>
 • Svelte
+<br>
 • Firebase
+<br>
 • Node.js
 
 ## Getting Started
