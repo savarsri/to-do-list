@@ -104,6 +104,21 @@ button:focus {
   .secondaryButton:hover {
 	background: rgb(255, 255, 255)
   }
+
+  .Button3 {
+	width: 75px;
+	height: 36px;
+	font-size:15px;
+	font-family: Arial;
+	border-width:1px;
+	color:rgba(0, 0, 0, 1);
+	border-radius:8px;
+	background:#ededed;
+  }
+  
+  .Button3:hover {
+	background: rgb(255, 255, 255)
+  }
   
   .style1{
 	color: black;
@@ -130,5 +145,14 @@ button:focus {
 
   .linkText{
         color: blue;
+  }	
+
+  .center{	
+		position: absolute;
+		top:0;
+		bottom: 0;
+		left: 0;
+		right: 0;	
+		margin: auto;
   }
   
