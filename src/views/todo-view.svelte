@@ -223,7 +223,7 @@
     #leftPanel{
         height: 100%;
         width: 25%;
-        background-color: #b7efe4;
+        background-image: linear-gradient(to bottom right, #ffeaef, #FF96AE);
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

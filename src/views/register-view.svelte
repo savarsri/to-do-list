@@ -44,11 +44,19 @@
                 });
                 await setDoc(doc(db, "users", user.uid,"projects",'Welcome'), {
                     tasks: [{
-                        title:'Welcome to To Do List',
+                        title:'Welcome to your To Do List',
                         status: false, 
                     },
                     {
-                        title: 'Hello Sir',
+                        title:'Add new task to your project from the bottom textbox',
+                        status: false, 
+                    },
+                    {
+                        title: 'Tick the checkbox to complete your task and use "Clear" to remove it',
+                        status: false,
+                    },
+                    {
+                        title: 'Create new projects to handle different tasks simultaneously',
                         status: false,
                     },],
                 });
