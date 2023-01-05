@@ -148,13 +148,13 @@
     </div>
     <div class="vl"></div>
     <div id="rightPanel">
-        <div class="projectTitle">
+        <div class="Title">
             {#if index!=undefined}  
             <div>
                 {projectList[index]}
             </div>
             <div>
-                <button class="Button3" on:click={clearTask}>clear</button>
+                <button class="" on:click={clearTask}>clear</button>
             </div>
             {/if}
         </div>
@@ -170,7 +170,9 @@
          {/each}
         </div>
         <div id="taskInputDiv">
-            <input id="taskInput" type="text" placeholder="Add a task"> 
+            <div>
+                <input id="taskInput" type="text" placeholder="Add a task"> 
+            </div>
             <button class="Button3" on:click={addTask}>Add</button>
         </div>
     </div>
@@ -182,7 +184,7 @@
     }
 
     .vl {
-        border-left: 3px solid rgb(71, 209, 255);
+        border-left: 2px solid rgb(196, 196, 196);
         height: 100%;
     }
 
@@ -197,14 +199,17 @@
         justify-content: space-around;
     }
 
-    .projectTitle{
+    .Title{
         margin: 2% 0%;
         width: 100%;
         font-family: monospace;
         font-size: 36px;
         display: flex;
-        justify-content: space-around;
-        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .Title > div{
     }
 
     .select{
@@ -284,9 +289,19 @@
     }
 
     #taskInputDiv{
-        width: 90%;
-        margin: 4% 8%;
+        width: 95%;
+        margin: 4% 2%;
         display: flex;
         justify-content: space-between;
+    }
+
+    #taskInputDiv > div{
+        margin: 0% 0.5%;
+        width: 100%;
+    }
+
+    #taskInputDiv > div > input{
+        width: 99%;
+        height: 80%;
     }
 </style>
