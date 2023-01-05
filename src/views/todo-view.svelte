@@ -148,15 +148,12 @@
     </div>
     <div class="vl"></div>
     <div id="rightPanel">
-        <div class="Title">
-            {#if index!=undefined}  
+        {#if index!=undefined}
+        <div class="Title">  
             <div>
                 {projectList[index]}
             </div>
-            <div>
-                <button class="" on:click={clearTask}>clear</button>
-            </div>
-            {/if}
+                <button class="Button3" on:click={clearTask}>clear</button>
         </div>
         <div id="taskListDiv">
             {#each taskData as taskData, i}
@@ -175,6 +172,7 @@
             </div>
             <button class="Button3" on:click={addTask}>Add</button>
         </div>
+        {/if}
     </div>
 </main>
 
@@ -184,7 +182,7 @@
     }
 
     .vl {
-        border-left: 2px solid rgb(196, 196, 196);
+        border-left: 2px solid #E0607E  ;
         height: 100%;
     }
 
@@ -210,6 +208,11 @@
     }
 
     .Title > div{
+        margin: 0% 2%;
+    }
+
+    .Title > button {
+        margin: 0% 2%;
     }
 
     .select{
@@ -220,7 +223,7 @@
     #leftPanel{
         height: 100%;
         width: 25%;
-        background-color: white;
+        background-color: #b7efe4;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -261,7 +264,7 @@
     }
 
     #projectTitle{
-        margin: 4% 0.5%;
+        margin: 2% 0.5%;
         padding: 2%;
         font-size: 16px;
         font-family: monospace;
@@ -280,16 +283,19 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        background-color: rgb(255, 255, 255);
+        background-color: #87E9D5;
     }
 
     #taskListDiv{
         overflow-y: auto;
         height: 75%;
+        background-color: white;
+        margin: 0% 2%;
+        border-radius: 4px;
     }
 
     #taskInputDiv{
-        width: 95%;
+        width: 96%;
         margin: 4% 2%;
         display: flex;
         justify-content: space-between;
