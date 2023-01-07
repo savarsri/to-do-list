@@ -7,7 +7,7 @@
     const user = auth.currentUser;
     let projectList = [];
     let taskData = [];
-    let index;
+    let index,index_task;
 
     const getData = async () => {
         const docRef = doc(db,"users", user.uid,"details",'details');
@@ -99,6 +99,24 @@
         });
     }
 
+    const deleteTask = async () => {
+        const docRef = doc(db,"users", user.uid,"projects", projectList[index]);
+            await updateDoc(docRef,{
+                tasks: arrayRemove({
+                    status: taskData[index_task].status,
+                    title: taskData[index_task].title,
+                })
+            }).then(()=>{
+                taskData.splice(index_task,1);
+                taskData=taskData;
+            }
+            ).catch(()=>{
+                console.log("Error occured try again!");
+            }
+               
+        );
+    }
+
     const clearTask = async () => {
         if(taskData !=0){
             const docRef = doc(db,"users", user.uid,"projects", projectList[index]);
@@ -159,9 +177,16 @@
             {#each taskData as taskData, i}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class:done={taskData.status} in:fade out:fade>
-                    <div id="projectTitle">
-                        <input type=checkbox bind:checked={taskData.status} on:change={updateTask}>
-                        {taskData.title}
+                    <div id="taskTitle">
+                        <div>
+                            <div>
+                                <input type=checkbox bind:checked={taskData.status} on:change={updateTask}>
+                                {taskData.title}
+                            </div>
+                            <div>
+                                <button class="fa fa-trash" on:click={()=>{index_task=i; deleteTask();}} ></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
          {/each}
@@ -292,6 +317,25 @@
         background-color: white;
         margin: 0% 2%;
         border-radius: 4px;
+    }
+
+    #taskTitle{
+        margin: 2% 0.5%;
+        padding: 2%;
+        font-size: 16px;
+        font-family: monospace;
+        font-weight: 700;
+        border-radius: 4px; 
+    }
+
+    #taskTitle:hover{
+        background-color: rgb(250, 250, 250);
+    }
+
+    #taskTitle > div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     #taskInputDiv{
